@@ -18,5 +18,6 @@ typedef struct format
 
 int printf_c(va_list ap);
 int printf_s(va_list ap);
+int printf_same(va_list ap);
 
 #endif

@@ -16,6 +16,7 @@ int _printf(const char *format, ...)
 	format_t operators[] = {
 		{'c', printf_c},
 		{'s', printf_s},
+		{'%', printf_same},
 		{'\0', NULL}
 	};
 
