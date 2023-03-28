@@ -34,7 +34,7 @@ int _printf(const char *format, ...)
 			{
 				if (format[len + 1] == operators[len2].op)
 				{
-					operators[len2].f(ap);
+					total_len = operators[len2].f(ap, total_len);
 					len++;
 				}
 				len2++;
@@ -43,15 +43,9 @@ int _printf(const char *format, ...)
 		else
 		{
 			_putchar(format[len]);
+			total_len++;
 		}
-		total_len++;
 	}
 	va_end(ap);
 	return (total_len);
 }
-/*int main(void)
-{
-	_printf("hola%c", "como");
-	putchar('\n');
-	return (0);
-}*/
