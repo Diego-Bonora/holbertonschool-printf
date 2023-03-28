@@ -17,6 +17,10 @@ int _printf(const char *format, ...)
 		{'c', printf_c},
 		{'s', printf_s},
 		{'%', printf_same},
+		{'d', printf_d},
+		{'i', printf_d},
+		{'u', printf_u},
+		{'b', printf_b},
 		{'\0', NULL}
 	};
 
