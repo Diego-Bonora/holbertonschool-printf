@@ -33,5 +33,6 @@ int printf_same(va_list ap, int total);
 int printf_d(va_list ap, int total);
 int printf_u(va_list ap, int total);
 int printf_b(va_list ap, int total);
-
+int printf_h(va_list ap, int total);
+int printf_o(va_list ap, int total);
 #endif
