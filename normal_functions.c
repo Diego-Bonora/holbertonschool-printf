@@ -63,6 +63,8 @@ int printf_d(va_list ap, int total)
 	int num;
 
 	num = va_arg(ap, int);
+	if (!num)
+		num = 0;
 	total = print_number(num, total);
 	return (total);
 }
