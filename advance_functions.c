@@ -13,7 +13,7 @@ int printf_b(va_list ap, int *total)
 	int cant = 0;
 	char *str;
 
-	str = malloc(sizeof(char));
+	str = malloc(sizeof(char) * 64);
 	if (!str)
 		return (-1);
 	num = va_arg(ap, unsigned int);
@@ -21,7 +21,6 @@ int printf_b(va_list ap, int *total)
 	{
 		str[cant] = ((num % 2) + '0');
 		num /= 2;
-		str = _realloc(str, sizeof(char) * (sizeof(str) + 1));
 		if (!str)
 		{
 			free(str);
@@ -50,7 +49,7 @@ int printf_h(va_list ap, int *total)
 	char diff[] = {'A', 'B', 'C', 'D', 'E', 'F'};
 	char *str;
 
-	str = malloc(sizeof(char));
+	str = malloc(sizeof(char) * 64);
 	if (!str)
 		return (-1);
 	num = va_arg(ap, unsigned int);
@@ -66,7 +65,6 @@ int printf_h(va_list ap, int *total)
 		{
 			str[cant] = new_num + '0';
 		}
-		str = _realloc(str, sizeof(char) * (sizeof(str) + 4));
 		if (!str)
 		{
 			free(str);
@@ -94,7 +92,7 @@ int printf_o(va_list ap, int *total)
 	int cant = 0;
 	char *str;
 
-	str = malloc(sizeof(str));
+	str = malloc(sizeof(str) * 64);
 	if (!str)
 		return (-1);
 	num = va_arg(ap, unsigned int);
@@ -102,7 +100,6 @@ int printf_o(va_list ap, int *total)
 	{
 		str[cant] = ((num % 8) + '0');
 		num /= 8;
-		str = _realloc(str, sizeof(char) * (sizeof(str) + 1));
 		if (!str)
 		{
 			free(str);
