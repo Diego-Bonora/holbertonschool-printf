@@ -7,7 +7,7 @@
  * Return: total of things written
  */
 
-int printf_b(va_list ap, int total)
+int printf_b(va_list ap, int *total)
 {
 	unsigned int num;
 	int cant = 0;
@@ -21,7 +21,7 @@ int printf_b(va_list ap, int total)
 	{
 		str[cant] = ((num % 2) + '0');
 		num /= 2;
-		str = realloc(str, sizeof(char) * (sizeof(str) + 1));
+		str = _realloc(str, sizeof(char) * (sizeof(str) + 1));
 		if (!str)
 		{
 			free(str);
@@ -32,7 +32,7 @@ int printf_b(va_list ap, int total)
 	print_rev(str);
 	free(str);
 	total += cant;
-	return (total);
+	return (0);
 }
 
 /**
@@ -42,7 +42,7 @@ int printf_b(va_list ap, int total)
  * Return: total of things written
  */
 
-int printf_h(va_list ap, int total)
+int printf_h(va_list ap, int *total)
 {
 	unsigned int num;
 	unsigned int new_num;
@@ -66,7 +66,7 @@ int printf_h(va_list ap, int total)
 		{
 			str[cant] = new_num + '0';
 		}
-		str = realloc(str, sizeof(char) * (sizeof(str) + 4));
+		str = _realloc(str, sizeof(char) * (sizeof(str) + 4));
 		if (!str)
 		{
 			free(str);
@@ -78,7 +78,7 @@ int printf_h(va_list ap, int total)
 	print_rev(str);
 	free(str);
 	total += cant;
-	return (total);
+	return (0);
 }
 
 /**
@@ -88,7 +88,7 @@ int printf_h(va_list ap, int total)
  * Return: total of things written
  */
 
-int printf_o(va_list ap, int total)
+int printf_o(va_list ap, int *total)
 {
 	unsigned int num;
 	int cant = 0;
@@ -102,7 +102,7 @@ int printf_o(va_list ap, int total)
 	{
 		str[cant] = ((num % 8) + '0');
 		num /= 8;
-		str = realloc(str, sizeof(char) * (sizeof(str) + 1));
+		str = _realloc(str, sizeof(char) * (sizeof(str) + 1));
 		if (!str)
 		{
 			free(str);
@@ -113,5 +113,5 @@ int printf_o(va_list ap, int total)
 	print_rev(str);
 	free(str);
 	total += cant;
-	return (total);
+	return (0);
 }
