@@ -9,43 +9,35 @@
 
 int print_number(int n, int len)
 {
-	int num = 0;
-	int negativo = 0;
-	int cero = 0;
+	int cant = 0;
+	unsigned int num;
+	char *str;
 
+	str = malloc(sizeof(char) * 64);
+	if (!str)
+		return (-1);
+	for (cant = 0; cant < 64; cant++)
+		str[cant] = '\0';
+	cant = 0;
+	if (n < 0)
+	{
+		_putchar('-');
+		len++;
+	}
 	if (n == 0)
 	{
 		_putchar('0');
 		len++;
 	}
-	else
+	num = (unsigned int)n;
+	while (num > 0)
 	{
-		if (n < 0)
-		{	n = n * -1;
-			negativo = 1; }
-		if (n % 10 == 0)
-		{	cero = 1;
-			num = num * 10;
-			num = num + 1;
-			n = n / 10; }
-		while (n >= 10)
-		{	num = num * 10;
-			num = num + n % 10;
-			n = n / 10; }
-		num = num * 10;
-		num = num + n % 10;
-		if (negativo == 1)
-		{	_putchar('-');
-			len++; }
-		while (num >= 10)
-		{	_putchar(num % 10 + '0');
-			num = num / 10;
-			len++; }
-		if (cero == 1)
-			_putchar('0');
-		else
-			_putchar(num + '0');
-		len++;
+		str[cant] = (num % 10) + '0';
+		num /= 10;
+		cant++;
 	}
+	len += cant;
+	print_rev(str);
+	free(str);
 	return (len);
 }
