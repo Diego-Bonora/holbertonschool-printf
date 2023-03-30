@@ -1,8 +1,9 @@
 #include "main.h"
 
 /**
- *
- *
+ * get_function - function used to find and return a necesary function
+ * @format: character to check for the necesary function
+ * Return: returns a pointer to a function
  */
 
 int (*get_function(char format))(va_list ap, int *total)

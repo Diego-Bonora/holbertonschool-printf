@@ -12,7 +12,7 @@ int printf_c(va_list ap, int *total)
 	char letter;
 
 	letter = va_arg(ap, int);
-	
+
 	_putchar(letter);
 	*total += 1;
 	return (0);
@@ -32,7 +32,7 @@ int printf_s(va_list ap, int *total)
 	string = va_arg(ap, char*);
 	if (!string)
 		string = "(null)";
-	write (1, string, _strlen(string));
+	write(1, string, _strlen(string));
 	*total += _strlen(string);
 	return (0);
 }

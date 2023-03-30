@@ -15,7 +15,7 @@ char *_realloc(char *ptr, size_t size)
 	new = malloc(size);
 	if (!new)
 		exit(-1);
-	while(ptr[len])
+	while (ptr[len])
 	{
 		new[len] = ptr[len];
 		len++;
