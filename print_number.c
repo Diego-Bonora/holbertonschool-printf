@@ -16,20 +16,22 @@ int print_number(int n, int len)
 	str = malloc(sizeof(char) * 64);
 	if (!str)
 		return (-1);
-	for (cant = 0; cant < 64; cant++)
-		str[cant] = '\0';
 	cant = 0;
 	if (n < 0)
 	{
 		_putchar('-');
 		len++;
+		num = -n;
+	}
+	else
+	{
+		num = n;
 	}
 	if (n == 0)
 	{
 		_putchar('0');
 		len++;
 	}
-	num = (unsigned int)n;
 	while (num > 0)
 	{
 		str[cant] = (num % 10) + '0';
