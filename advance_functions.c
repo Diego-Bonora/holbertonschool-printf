@@ -70,7 +70,7 @@ int printf_h(va_list ap, int *total)
 }
 
 /**
- * printf_h - prints a hexadecimal number in lowercase
+ * printf_H - prints a hexadecimal number in lowercase
  * @ap: list of args
  * @total: total written
  * Return: total of things written
