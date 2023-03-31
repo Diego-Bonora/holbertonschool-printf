@@ -1,5 +1,5 @@
-<div id="header" align="center">
-	<h1  class="page_title" align="center" width="50">C - printf</h1>
+<div id="header" align="left">
+	<h1  class="page_title" align="left" width="60">C - printf</h1>
 _printf is the standard function in C, and in many programming languages, for printing format strings on the screen.
 It is a function that takes an indefinite number of arguments. The parameter coast of a constant string called format, and a number of additional undefined arguments
 	</div>
@@ -51,8 +51,8 @@ _printf("% [ format ]", type);
 ```
 
 <details>
-  <summary align="center" ><h1width="50">Format type field</h1></summary>
-  <table align="center" width="50">
+  <summary align="left" ><h1width="60">Format type field</h1></summary>
+  <table align="left" width="60">
 	<tr>
     <th>format types</th>
     <th>description </th>
@@ -125,7 +125,7 @@ _printf("% [ format ]", type);
 <div>
 <details>
 
-  <summary align="center"><h2 width="50">Examples and tests</h2></summary>
+  <summary align="left"><h2 width="60">Examples and tests</h2></summary>
   Compilation:
   
   ```c
@@ -228,8 +228,8 @@ In this one the function get_function is invoked to look for the functions of fo
 Prototype: ```int _printf(const char *format, ...);```
 	
 <details>
-<summary><h1 align="center">flow chart</h1></summary>
-	<img width="12032" alt="diagrama de flujo de printf" src="">
+<summary><h1 align="left">flow chart</h1></summary>
+	<img width="12000" alt="diagrama de flujo de printf" src="">
 </details>
 
 ---
@@ -335,7 +335,7 @@ This file contains the function _strlen, this function calculates the length of 
 
 <div>
 <details>
-<summary><h3>Project description</h3></summary>
+<summary><h2>Project description</h2></summary>
 	
 This is the first group project, carried out by Holberton students.
 The goal of this assignment is to recreate the printf function, a basic version of the standard function.
@@ -384,7 +384,7 @@ It also encourages group and team work with a randomly assigned partner.
 ---
 
 <footer>
-<p align="center">Authors:<p>
-<p align="center"><a href="https://github.com/Diego-Bonora" target="blank">Diego-Bonora</a></p>
-<p align="center"><a href="https://github.com/MarcosPerdomoVaz" target="blank">MarcosPerdomoVaz</a></p>
+<p align="left">Authors:<p>
+<p align="left"><a href="https://github.com/Diego-Bonora" target="blank">Diego-Bonora</a></p>
+<p align="left"><a href="https://github.com/MarcosPerdomoVaz" target="blank">MarcosPerdomoVaz</a></p>
 </footer>
