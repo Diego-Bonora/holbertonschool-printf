@@ -18,7 +18,7 @@ int (*get_function(char format))(va_list ap, int *total)
 		{'i', printf_d},
 		{'u', printf_u},
 		{'b', printf_b},
-		{'x', printf_h},
+		{'x', printf_H},
 		{'X', printf_h},
 		{'o', printf_o},
 		{'\0', NULL}
