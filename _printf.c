@@ -1,9 +1,9 @@
 #include "main.h"
 
 /**
- * _printf - prints
+ * _printf - main function for handmade printf
  * @format: input for the printf
- * Return: int 0
+ * Return: ammount of characters printed
  */
 
 int _printf(const char *format, ...)
@@ -14,7 +14,6 @@ int _printf(const char *format, ...)
 	int len;
 	int (*f)(va_list ap, int *total);
 
-	(void)flag;
 	len = 0;
 	va_start(ap, format);
 	if (!format)
