@@ -8,7 +8,6 @@
 
 int _printf(const char *format, ...)
 {
-	int flag;
 	va_list ap;
 	int total_len = 0;
 	int len;
