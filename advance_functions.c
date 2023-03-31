@@ -30,7 +30,7 @@ int printf_b(va_list ap, int *total)
 }
 
 /**
- * printf_h - prints a hexadecimal number
+ * printf_h - prints a hexadecimal number in uppercase
  * @ap: list of args
  * @total: total written
  * Return: total of things written
@@ -68,6 +68,13 @@ int printf_h(va_list ap, int *total)
 	*total += cant;
 	return (0);
 }
+
+/**
+ * printf_h - prints a hexadecimal number in lowercase
+ * @ap: list of args
+ * @total: total written
+ * Return: total of things written
+ */
 
 int printf_H(va_list ap, int *total)
 {
