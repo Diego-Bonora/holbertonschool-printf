@@ -15,7 +15,6 @@ int print_number(int n, int len);
 int print_unsigned_num(unsigned int n, int len);
 int _strlen(char *s);
 void print_rev(char *s);
-char *_realloc(char *ptr, size_t size);
 int (*get_function(char format))(va_list ap, int *total);
 
 /**
