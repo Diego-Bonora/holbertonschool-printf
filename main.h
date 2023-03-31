@@ -1,5 +1,6 @@
 #ifndef MAIN_H
 #define MAIN_H
+#define BUFFER 1024
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -37,5 +38,6 @@ int printf_d(va_list ap, int *total);
 int printf_u(va_list ap, int *total);
 int printf_b(va_list ap, int *total);
 int printf_h(va_list ap, int *total);
+int printf_H(va_list ap, int *total);
 int printf_o(va_list ap, int *total);
 #endif
