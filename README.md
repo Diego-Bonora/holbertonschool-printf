@@ -1,7 +1,9 @@
 <div id="header" align="left">
 	<h1  class="page_title" align="center" width="60">Holberton School _printf</h1>
-In this proyect we were tasked to make the printf function from scratch.<br>The printf function in C is a standard library function that produced an output acording to the required format and a number of additional undefined arguments, finaly, the output is written in the standar output.
-	</div>
+In this proyect we were tasked to make the printf function from scratch.
+<br>
+The printf function in C is a standard library function that produces an output acording to the required format and a number of additional undefined arguments, finaly, the output is written in the standar output.
+</div>
 	 
 ---
 
@@ -22,6 +24,7 @@ In this proyect we were tasked to make the printf function from scratch.<br>The 
 		<li>Don’t forget to push your header file</li>
 		<li>All your header files should be include guarded</li>
 	</ul>
+		<hr>
 		<h2>Authorized functions and macros</h2>
 	<ul>
 		<li>write (man 2 write)</li>
@@ -40,7 +43,7 @@ In this proyect we were tasked to make the printf function from scratch.<br>The 
 
 <div>
 <details>
-  <summary><h1>Functioning</h1></summary>
+  <summary><h1>Function operation</h1></summary>
   <p>What this function does is to go through the format constant character by character, and according to the character it finds, it evaluates and performs a function.
 
 The format string includes text and may contain the special character '%', when it does find a special character it will check if the next character its a format specifier, and then it will replace the '%' and the character with the next argument, if the next character its another '%' it will print a '%', if it doesnt mach with any special character it will print the '%' and the character, and if ther`s a NULL byte after the '%' it will return -1.</p>
@@ -193,157 +196,90 @@ Unknown:[%r]
 	
 This file contains the main code of the printf function.
 Here we will loop in the format string looking for a special character, meanwhile printing all the normal characters using the get_function function of the _putchar for printing.
+The function allways returns the number of characters printed or -1 if an error ocurres.
 	
-Prototype: ```int _printf(const char *format, ...);```
+<pre> Prototype: int _printf(const char *format, ...);</pre>
 	
-
-
 ---
 	
 <a name="main.h"></a>
 	<h2><a href="https://github.com/Diego-Bonora/holbertonschool-printf/blob/master/main.h">main.h</a></h2>
-this file has all the maros headers used by the functions, function prototypes and structure.
+this file has all the macros headers used by the functions, function prototypes and the structure.
 	
 ```c
 /**
- * struct get_formats - contains the formats
- * @f_s: format specifier
- * @f: pointer to formatting functions
+ * struct format - structure for calling diferent functions
  *
- * Description: this structure contains the format indicators in the f_s layer, and the functions corresponding to these formats in the field f
+ * @op: The operator
+ * @f: The function associated
  */
-typedef struct get_formats
+
+typedef struct format
 {
-	char f_s;
-	int (*f)(va_list args);
-} get_t;
+	char op;
+	int (*f)(va_list ap, int *total);
+} format_t;
 ```
 
 <a name="get_function.c"></a>
 <h2><a href="https://github.com/Diego-Bonora/holbertonschool-printf/blob/master/get_function.c">get_function.c</a></h2>
-This file contains the function that will give us the function to print the required format
-Contains the format flags and their respective functions.
+This file contains the function that will return the function needed to print the required format using a structrure that contains the format flags and their respective functions.
 	
-```get_t functions[ array of formats and functions ]```
+<pre> Prototype: int (*get_function(char format))(va_list ap, int *total);</pre>
 
 <a name="normal_functions.c"></a>
 <h2><a href="https://github.com/Diego-Bonora/holbertonschool-printf/blob/master/normal_functions.c">normal_functions.c</a></h2>
-This file contains the functions for printing strings composed of characters.
+This file contains several functions used to print some of the type of arguments that can be sent to the _printf.
 
-* [ **c** ]
-Converts an argument of type int to a value of type unsigned char and writes the corresponding ASCII character code to the output stream.
-
-* [ **s** ]
-Writes the characters of the string specified by an argument of type char *, up to, but not including the terminating NUL character ('\0'), to the output stream.
-
-* [ **x, X** ] 
-Converts an unsigned argument to unsigned hexadecimal notation, and writes it to the output stream. The default precision is 1, but if more digits are needed, leading zeros are added.
-Hexadecimal notation uses the digits 0 through 9 and the characters a through f or A through F for x or X conversions, respectively, as hexadecimal digits. Subject to the control flag alternatively, 0x or 0X is prefixed to the output.
-
-* [ **R** ]
-Encrypt a string in ROT13, rotate 13 positions" a letter, moving any letter 13 positions in the alphabet.
-
-<a name="print_number.c"></a>
-<h2><a href="https://github.com/Diego-Bonora/holbertonschool-printf/blob/master/print_number.c">print_numbers.c</a></h2>
-This file contains the functions to print format strings composed of numbers
-
-* [ **d, i** ]
-Converts an int argument to signed decimal notation and writes it to the output stream.
-
-* [ **b** ]
-Converts an unsigned integer argument to binary
-
-* [ **u** ]
-Converts an unsigned argument to unsigned decimal notation, and writes it to the output stream.
-
-* [ **o** ]
-Converts an unsigned argument to unsigned octal notation and writes it to the output stream.
-
-<a name="_putchar"></a>
-<h2><a href="https://github.com/Diego-Bonora/holbertonschool-printf/blob/master/_putchar.c">_putchar.c</a></h2>
-This file contains the function putchar that takes a single character as an argument and writes it to the standard output
-
+<ul>
+	<li>[<b> c </b>] <br> This function prints a character passed by an argument. <pre> Prototype: int printf_c(va_list ap, int *total); </pre></li>
+	<li>[<b> s </b>] <br> This function prints a character string passed by an argument. <pre> Prototype: int printf_s(va_list ap, int *total);</pre></li>
+	<li>[<b> % </b>] <br> This function prints a '%' sign. <pre> Prototype: int printf_same(va_list ap, int *total);</pre></li>
+	<li>[<b> d - i </b>] <br> This function calls print_number to print the int passed by the argument, this function works with both flags, 'i' and 'd'. <pre> Prototype: int printf_d(va_list ap, int *total);</pre></li>
+	<li>[<b> u </b>] <br> This function calls print_unsigned_num to print the unsigned int passed by the argument. <pre> Prototype: int printf_u(va_list ap, int *total);</pre></li>
+</ul>
 
 <a name="advance_functions.c"></a>
 <h2><a href="https://github.com/Diego-Bonora/holbertonschool-printf/blob/master/advance_functions.c">advance_functions.c</a></h2>
-This file contains all auxiliary functions used by other functions.
+This file contains more functions used to print other type of arguments that can be sent to the _printf.
 
+<ul>
+	<li>[<b> b </b>] <br> This function converts an unsigned int into binary and prints it. <pre> Prototype: int printf_b(va_list ap, int *total); </pre></li>
+	<li>[<b> o </b>] <br> This function converts an unsigned int into octal and prints it. <pre> Prototype: int printf_o(va_list ap, int *total); </pre></li>
+	<li>[<b> h </b>] <br> This function converts an unsigned int into lower case hexadecimal and prints it. <pre> Prototype: int printf_h(va_list ap, int *total); </pre></li>
+	<li>[<b> H </b>] <br> This function converts an unsigned int into upper case hexadecimal and prints it. <pre> Prototype: int printf_H(va_list ap, int *total); </pre></li>
+</ul>
 
+<a name="print_number.c"></a>
+<h2><a href="https://github.com/Diego-Bonora/holbertonschool-printf/blob/master/print_number.c">print_number.c</a></h2>
+This file contains the function used to convert integer numbers into string in reverse order using math and then uses another function to print it in reverse order.
+
+<pre> Prototype: int print_number(int n, int len); </pre>
+
+<a name="print_unsigned.c"></a>
+<h2><a href="https://github.com/Diego-Bonora/holbertonschool-printf/blob/master/print_unsigned.c">print_unsigned.c</a></h2>
+This file contains the function used to convert unsigned integer numbers into string in reverse order using math and then uses another function to print it in reverse order.
+
+<pre> Prototype: int print_unsigned_num(unsigned int n, int len); </pre>
+	
 <a name="print_rev.c"></a>
 <h2><a href="https://github.com/Diego-Bonora/holbertonschool-printf/blob/master/print_rev.c">print_rev.c</a></h2>
-This file contains the function print_rev, this function prints the characters in the input string in reverse order to the console.
+This file contains the function used to print a string in reverse order using the function _putchar.
 
-
-<a name="print_unsigned"></a>
-<h2><a href="https://github.com/Diego-Bonora/holbertonschool-printf/blob/master/print_unsigned.c">print_unsigned</a></h2>
-This file contains the function print_unsigned_num, this function prints an unsigned integer to the console with its digits reversed, including any leading zeros.
-
-<a name="realloc.c"></a>
-<h2><a href="https://github.com/Diego-Bonora/holbertonschool-printf/blob/master/realloc.c">realloc.c</a></h2>
-This file contains the function _realloc, this function reallocated memory for a block of data pointed to by ptr to a new block of memory of a specified size size, copies the data from the old block to the new block, and frees the old block.
-
+<pre> Prototype: void print_rev(char *s); </pre>
+	
 <a name="strlen.c"></a>
 <h2><a href="https://github.com/Diego-Bonora/holbertonschool-printf/blob/master/strlen.c">strlen.c</a></h2>
-This file contains the function _strlen, this function calculates the length of a string by counting the number of characters in it until it reaches the null byte that marks the end of the string.
+This file contains the function to get the lenght of a string, this is a handmade replica of the actual function strlen.
 
-
-<a name="printf.man"></a>
-<h2><a href="">printf.man</a></h2>
-
-* printf function manual, to view the man page, enter:
-
-```man ./printf.man```
-
-</details>
-</div>
-
----
-
-<div>
-<details>
-<summary><h2>Project description</h2></summary>
+<pre> Prototype: int _strlen(char *s); </pre>
 	
-This is the first group project, carried out by Holberton students.
-The goal of this assignment is to recreate the printf function, a basic version of the standard function.
-It also encourages group and team work with a randomly assigned partner.
+<a name="_putchar.c"></a>
+<h2><a href="https://github.com/Diego-Bonora/holbertonschool-printf/blob/master/_putchar.c">_putchar.c</a></h2>
+This file contains the function to print a simple character, this is a handmade replica of the actual function putchar.
 
----
+<pre> Prototype: int _putchar(char c); </pre>
 
-<details>
-  <summary>Requirements</summary>
-  
-* Allowed editors: vi, vim, emacs.
-
-* You are not allowed to use global variables.
-
-* No more than 5 functions per file.
-
-* it is not necessary to upload the test network to your repository.
-
-* The prototypes of all your functions should be included in your header file called main.h.
-
-* Note that we will not provide the putchar function for this project.
-</details>
-
----
-
-<details>
-  <summary>Authorized functions and macros</summary>
-  
-* write (man 2 write)
-
-* malloc (man 3 malloc)
-
-* free (man 3 free)
-
-* va_start (man 3 va_start)
-
-* va_end (man 3 va_end)
-
-* va_copy (man 3 va_copy)
-
-* va_arg (man 3 va_arg)
-</details>
 </details>
 </div>
 
@@ -351,6 +287,6 @@ It also encourages group and team work with a randomly assigned partner.
 
 <footer>
 <p align="left">Authors:<p>
-<p align="left"><a href="https://github.com/Diego-Bonora" target="blank">Diego-Bonora</a></p>
+<p align="left"><a href="https://github.com/Diego-Bonora" target="blank">Diego Bonora</a></p>
 <p align="left"><a href="https://github.com/MarcosPerdomoVaz" target="blank">MarcosPerdomoVaz</a></p>
 </footer>
