@@ -190,6 +190,13 @@ Unknown:[%r]
 9. [ strlen.c ](#strlen.c)
 
 10. [ _putchar.c ](#_putchar.c)
+	
+<details>
+  <summary><h2>Flowchart</h2></summary>
+	
+  ![_printf](https://user-images.githubusercontent.com/77507773/229322781-d4ae822f-b3a0-469c-a363-37cfde1ec25b.png)
+	
+</details>
 
 <a name="_printf.c"></a>
 <h2><a href="https://github.com/Diego-Bonora/holbertonschool-printf/blob/master/_printf.c">_printf.c</a></h2>
