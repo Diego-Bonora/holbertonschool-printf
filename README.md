@@ -1,9 +1,31 @@
 <div id="header" align="left">
-	<h1  class="page_title" align="left" width="60">C - printf</h1>
-_printf is the standard function in C, and in many programming languages, for printing format strings on the screen.
-It is a function that takes an indefinite number of arguments. The parameter coast of a constant string called format, and a number of additional undefined arguments
+	<h1  class="page_title" align="center" width="60">Holberton School _printf</h1>
+In this proyect we were tasked to make the printf function from scratch.<br>The printf function in C is a standard library function that produced an output acording to the required format and a number of additional undefined arguments, finaly, the output is written in the standar output.
 	</div>
 	 
+---
+
+<div>
+<details>
+  	<summary><h1>Requirements</h1></summary>
+	<div>
+		<h2>General</h2>
+	<ul>
+		<li>Allowed editors: vi, vim, emacs</li>
+		<li>All your files will be compiled on Ubuntu 20.04 LTS using gcc, using the options -Wall -Werror -Wextra -pedantic -std=gnu89</li>
+		<li>All your files should end with a new line</li>
+		<li>A README.md file, at the root of the folder of the project is mandatory</li>
+		<li>Your code should use the Betty style. It will be checked using betty-style.pl and betty-doc.pl</li>
+		<li>You are not allowed to use global variables</li>
+		<li>No more than 5 functions per file</li>
+		<li>The prototypes of all your functions should be included in your header file called main.h</li>
+		<li>Don’t forget to push your header file</li>
+		<li>All your header files should be include guarded</li>
+	</ul>
+	</div>
+</details>
+</div>
+
 ---
 
 <div>
