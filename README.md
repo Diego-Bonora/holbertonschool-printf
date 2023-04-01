@@ -22,6 +22,16 @@ In this proyect we were tasked to make the printf function from scratch.<br>The 
 		<li>Don’t forget to push your header file</li>
 		<li>All your header files should be include guarded</li>
 	</ul>
+		<h2>Authorized functions and macros</h2>
+	<ul>
+		<li>write (man 2 write)</li>
+		<li>malloc (man 3 malloc)</li>
+		<li>free (man 3 free)</li>
+		<li>va_start (man 3 va_start)</li>
+		<li>va_end (man 3 va_end)</li>
+		<li>va_copy (man 3 va_copy)</li>
+		<li>va_arg (man 3 va_arg)</li>
+	</ul>
 	</div>
 </details>
 </div>
@@ -33,28 +43,12 @@ In this proyect we were tasked to make the printf function from scratch.<br>The 
   <summary><h1>Functioning</h1></summary>
   <p>What this function does is to go through the format constant character by character, and according to the character it finds, it evaluates and performs a function.
 
-To be more specific, the format string includes the text to be printed literally and as it proceeds, it will check if the current character is a '%', when it finds this format indicator, in case the next character is a format specifier, it replaces it with the text obtained from the added parameters, in case it is another '%', it simply prints that '%', if it is neither a format type nor a '%', it simply prints the % followed by the character after that '%'.</p>
+The format string includes text and may contain the special character '%', when it does find a special character it will check if the next character its a format specifier, and then it will replace the '%' and the character with the next argument, if the next character its another '%' it will print a '%', if it doesnt mach with any special character it will print the '%' and the character, and if ther`s a NULL byte after the '%' it will return -1.</p>
+	  
+
 Example:
 
 Input:
-```c
-int mian()
-{
-	_printf("Character:[%c]|n", 'H');
-	return(0);
-}
-```
-Output:
-```
-Character:[H]
-```
-<h2>Format indicator</h2>
-<p>The symbol '%' denotes the beginning of the formatting mark.</p>
-If several indicators are pickled in the format constant string, the values are included in the same order in which they appear.
-
-As shown in the following example:
-
-Input
 ```c
 int main()
 {
@@ -66,16 +60,11 @@ Output:
 ```
 Color red, number 1234567
 ```
-<h2>Syntax</h2>
-
-```
-_printf("% [ format ]", type);
-```
-
+	
 <details>
-  <summary align="left" ><h1width="60">Format type field</h1></summary>
-  <table align="left" width="60">
-	<tr>
+  <summary align="left" ><h3 width="60">Format type examples</h3></summary>
+  <table align="left">
+  <tr>
     <th>format types</th>
     <th>description </th>
   </tr>
@@ -85,74 +74,40 @@ _printf("% [ format ]", type);
   </tr>
   <tr>
     <td>%s</td>
-    <td>Character string (ending in '0')</td>
+    <td>Character string (ending in '\0')</td>
   </tr>
   <tr>
     <td>%d, %i</td>
-    <td>Signed decimal conversion of an integer</td>
+    <td>Converts a decimal into string for printing it</td>
   </tr>
   <tr>
     <td>%b</td>
-    <td>the unsigned int argument is converted to binary</td>
+    <td>Converts an unsigned int argument into binary</td>
   </tr>
   <tr>
     <td>%u</td>
-    <td>Unsigned decimal conversion of an integer</td>
+    <td>Converts an unsigned int argument into string for printing it</td>
   </tr>
   <tr>
     <td>%o</td>
-    <td>Unsigned octal conversion of an integer</td>
+    <td>Converts an unsigned int argument into octal</td>
   </tr>
   <tr>
     <td>%x, %X</td>
-    <td>Unsigned hexadecimal conversion, x for lowercase, X for uppercase</td>
-  </tr>
-  <tr>
-    <td>%r</td>
-    <td>prints the reversed string</td>
-  </tr>
-  <tr>
-    <td>%R</td>
-    <td>prints the rot13'ed string</td>
-  </tr>
-  <tr>
-    <td>%p </td>
-    <td>Memory address (pointer)</td>
+    <td>Converts an unsigned int argument into hexadecimal, x for lowercase, X for uppercase</td>
   </tr>
 </table>
 </details>
-
-<details>
-  <summary><h2>compilation and installation</h2></summary>
-  
-  ```c
-  // clones the repository
-  $ git clone https://github.com/Diego-Bonora/holbertonschool-printf
-  $ cd holbertonschool-printf
-  // creates a main call function
-  $ make all
-  gcc -Wall -Wextra -Werror -pedantic -std=gnu89 -Wno-format *.c -o printf
-  ./printf
-  // output examples
- Negative:[-762534]
- Unsigned:[2147484671]
- Unsigned octal:[20000001777]
- Unsigned hexadecimal:[800003ff, 800003FF]
- Character:[H]
- String:[I am a string !]
- ```
- 
-</details>
-	
 <div>
 <details>
 
-  <summary align="left"><h2 width="60">Examples and tests</h2></summary>
-  Compilation:
+  <summary align="left"><h3 width="60">Examples of the function printf</h3></summary>
+  
+Compilation:
   
   ```c
   
-  // You might want to look at the gcc flag -Wno-format when testing with your printf and the standard printf. Example of test file that you could use:
+  // You might want to look at the gcc flag -Wno-format when testing with your printf and the standard printf.
   $ gcc -Wall -Werror -Wextra -pedantic -std=gnu89 -Wno-format *.c
   
   ````
@@ -163,28 +118,26 @@ testing function
 
 ```c
 #include "main.h"
+	
 int main(void)
 {
     int len;
     unsigned int ui;
     void *addr;
-	char *str = "Diego-Bonora";
 
     len = _printf("Let's try to printf a simple sentence.\n");
     ui = (unsigned int)INT_MAX + 1024;
-    addr = (void *)0x7ffe637541f0;
     _printf("Length:[%d, %i]\n", len, len);
     _printf("Negative:[%d]\n", -762534);
     _printf("Unsigned:[%u]\n", ui);
     _printf("Unsigned octal:[%o]\n", ui);
     _printf("Unsigned hexadecimal:[%x, %X]\n", ui, ui);
+    _printf("Unsigned binary:[%b]\n", 98);
     _printf("Character:[%c]\n", 'H');
     _printf("String:[%s]\n", "I am a string !");
-    _printf("Address:[%p]\n", addr);
     len = _printf("Percent:[%%]\n");
     _printf("Len:[%d]\n", len);
-    _printf("Unknown:[%r]\n",  str);
-	_printf("Prints the rot13'ed:[%R]\n", str);
+    _printf("Unknown:[%r]\n");
     return (0);
 }
 ```
@@ -197,13 +150,12 @@ Negative:[-762534]
 Unsigned:[2147484671]
 Unsigned octal:[20000001777]
 Unsigned hexadecimal:[800003ff, 800003FF]
+Unsigned binary:[1100010]
 Character:[H]
 String:[I am a string !]
-Address:[0x7ffe637541f0]
 Percent:[%]
 Len:[12]
-Unknown:[aronoB-ogeiD]
-Prints the rot13'ed:[Facvgbevpb]
+Unknown:[%r]
 ```
 </details>
 </div>
@@ -215,7 +167,6 @@ Prints the rot13'ed:[Facvgbevpb]
 <div>
 <details>
 <summary><h1>Files</h1></summary>
-<h4>Index</h4>
 	
 1. [ _printf.c ](#_printf.c)
 	
@@ -223,36 +174,29 @@ Prints the rot13'ed:[Facvgbevpb]
 	
 3. [ get_function.c ](#get_function.c)
 	
-4. [ print_number.c ](#print_number.c)
+4. [ normal_functions.c ](#normal_functions.c)
+
+5. [ advance_functions.c ](#advance_functions.c)
 	
-5. [ print_rev.c ](#print_rev.c)
+6. [ print_number.c ](#print_number.c)
 
-6. [ normal_functions.c ](#normal_functions.c)
+7. [ print_unsigned.c ](#print_unsigned.c)
+	
+8. [ print_rev.c ](#print_rev.c)
 
-7. [ advance_functions.c ](#advance_functions.c)
+9. [ strlen.c ](#strlen.c)
 
-8. [ _putchar.c ](#_putchar.c)
-
-9. [ print_unsigned.c ](#print_unsigned.c)
-
-10. [ realloc.c ](#realloc.c)
-
-11. [ strlen.c ](#strlen.c)
-
-12. [ printf.man ](#printf.man)
+10. [ _putchar.c ](#_putchar.c)
 
 <a name="_printf.c"></a>
 <h2><a href="https://github.com/Diego-Bonora/holbertonschool-printf/blob/master/_printf.c">_printf.c</a></h2>
 	
 This file contains the main code of the printf function.
-In this one the function get_function is invoked to look for the functions of formats, and this same function is the one that is in charge of sending the parameters to these functions to print formats.
+Here we will loop in the format string looking for a special character, meanwhile printing all the normal characters using the get_function function of the _putchar for printing.
 	
 Prototype: ```int _printf(const char *format, ...);```
 	
-<details>
-<summary><h1 align="left">flow chart</h1></summary>
-	<img width="12000" alt="diagrama de flujo de printf" src="">
-</details>
+
 
 ---
 	
